@@ -1,0 +1,59 @@
+---
+title: "P8"
+author: "Steph Bossert"
+date: "5/11/2021"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse) 
+library(tidymodels)
+library(viridis)
+library(openintro)
+```
+
+
+```{r data}
+library(haven)
+SIB_Wk2_44_51_PCIB <- read_sav("~/Documents/Grad School Fall 2020/Research/Data/EWB Data.SPSS/Illbeing/SIB_Wk2-44-51_PCIB.sav")
+View(SIB_Wk2_44_51_PCIB)
+```
+
+```{r statistics}
+
+```
+
+#Does initial state ill-being predict Week 45 and 52 perceived change in IB? 
+```{r stateIB Wk45}
+##run the model
+m_SIB=lm(SIB_Chnage_T1~SIB_Wk2_mean, data = SIB_Wk2_44_51_PCIB)
+         #Create the linear regression
+summary(m_SIB)
+
+ggplot(SIB_Wk2_44_51_PCIB, aes(x=SIB_Wk2_mean, y=SIB_Chnage_T1)) + 
+  geom_point(shape=18, color="blue")+
+  geom_smooth(method=lm, se=FALSE, linetype="solid",
+             color="black")
+
+
+###Assoction between actual ill-being and change in ill-being = .50
+
+```
+#Initial wellbeing and perceived change in wellbeing
+
+```{r regression}
+##run the model
+m_SIB=lm(SIB_Chnage_T2~SIB_Wk2_mean, data = SIB_Wk2_44_51_PCIB)
+         #Create the linear regression
+summary(m_SIB)
+
+ggplot(SIB_Wk2_44_51_PCIB, aes(x=SIB_Wk2_mean, y=SIB_Chnage_T2)) + 
+  geom_point(shape=18, color="blue")+
+  geom_smooth(method=lm, se=FALSE, linetype="solid",
+             color="black")
+
+
+###Assoction between actual ill-being and change in ill-being = .50
+
+```
